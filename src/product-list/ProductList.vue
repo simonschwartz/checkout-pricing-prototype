@@ -1,26 +1,20 @@
 <template>
-	<div id="product-list">
+	<div class="product-list-container">
 		<h1>Product list</h1>
-		<ul id="example-1">
+		<ul class="product-list">
 			<li v-for="item in items">
-				{{ item.name }}
-				<p v-if="item.special_qty">
-					Special
-					{{ item.special_qty }}
-					${{ item.special_price }}
-				</p>
-				<p v-else>
-					Not special
-					${{ item.unit_price }}
-				</p>
+				<ProductItem :item="item"></ProductItem>
 			</li>
 		</ul>
 	</div>
 </template>
 
 <script>
+import ProductItem from '../product-item/ProductItem.vue'
+
 export default {
 	name: 'product-list',
+	components: { ProductItem },
 	data () {
 		return {
 			items: [] // we store the items from the API in an array
@@ -41,6 +35,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+	.product-list {
+		list-style-type: none;
+		padding-left: 0;
+	}
 
 </style>
