@@ -1,20 +1,23 @@
 <template>
 	<div class="product-list-container">
 		<h1>Product list</h1>
+		<ProductCart></ProductCart>
 		<ul class="product-list">
 			<li v-for="item in items">
 				<ProductItem :item="item"></ProductItem>
 			</li>
 		</ul>
+
 	</div>
 </template>
 
 <script>
 import ProductItem from '../product-item/ProductItem.vue'
+import ProductCart from '../product-cart/ProductCart.vue'
 
 export default {
 	name: 'product-list',
-	components: { ProductItem },
+	components: { ProductItem, ProductCart },
 	data () {
 		return {
 			items: [] // we store the items from the API in an array

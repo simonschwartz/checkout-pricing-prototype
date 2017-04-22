@@ -23,20 +23,29 @@
 </template>
 
 <script>
+import { bus } from '../main.js';
+
 export default {
 	name: 'product-item',
 	props: [ 'item' ],
 	data () {
 		return {
-			item_amount: 0,
+			// we set a default value for our item quality input field
 			item_quantity: 1,
-			special: 0
 		}
 	},
 	methods: {
+		// when the user hits the 'Add to cart' button'
 		addToCart: function() {
 
-			this.item_amount = this.item_amount + this.item_quantity
+			// we save the cart addition info and emit the data to the shopping cart component
+			let cart_addition = {
+				item_name: this.$props.item.name,
+				item_price: this.$props.item.unit_price * this.item_quantity,
+				item_quantity: this.item_quantity,
+			}
+
+			bus.$emit('child-msg', cart_addition)
 
 			// if item has special_qty value, then we reduce special_qty value
 			if( this.item.special_qty ) {
