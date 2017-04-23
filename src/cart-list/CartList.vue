@@ -2,6 +2,9 @@
 	<div class="product-cart-container">
 		<h1>Product cart</h1>
 
+		<h3 v-if="cart_items.length === 0">Your cart is empty</h3>
+		<h3 v-else>{{cart_items.length}} items in your cart</h3>
+
 		<ul class="cart-list">
 			<li v-for="item, key in cart_items">
 				<CartItem :item="item" v-on:remove="removeFromCart"></CartItem>
@@ -53,13 +56,13 @@ export default {
 	},
 	// when item is added to cart, we add the item data to our cart_items array
 	created: function() {
-		bus.$on('add-item-to-cart', data => {
+		bus.$on('add-item-to-cart', cart_addition => {
 
 			// push the selected item to our cart array
-			this.cart_items.push(data)
+			this.cart_items.push(cart_addition)
 
 			// update the total cart price
-			this.total_price = this.total_price + data.item_price
+			this.total_price = this.total_price + cart_addition.item_price
 
 		})
 	}

@@ -25,8 +25,9 @@ export default {
 			items: [] // we store the items from the API in an items array
 		}
 	},
-	// we grab the data from the API endpoint once the component has mounted
+
 	mounted: function() {
+		// we grab the data from the API endpoint once the component has mounted
 		this.$http.get('https://api.myjson.com/bins/gx6vz').then(response => {
 
 			// get the response data and set it to our component data
@@ -38,13 +39,14 @@ export default {
 			window.alert("Oh no! We couldn't get the data")
 		});
 	},
+
 	created: function() {
 
 		// this event fires when a special item is removed from the cart_items
-		// this means we can add back the special_quantity value in our ProductList compinent
+		// this means we can add back the special_quantity value in our ProductList component
 		bus.$on('remove-special-item-from-cart', itemName => {
 
-			// we iterate over our items array to find the item sam name as the item removed from the cart
+			// we iterate over our items array to find the item with same name as the item removed from the cart
 			for (var item of this.items) {
 				if( itemName == item.name ) {
 
