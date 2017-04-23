@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@gov.au/pancake-sass": "^1.0.10",
     "vue": "^2.2.1"
   },
   "devDependencies": {
@@ -24,6 +25,28 @@
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",
     "jest-cli": "^19.0.2",
-		"vue-resource": "^1.0.3"
+    "vue-resource": "^1.0.3"
+  },
+  "pancake": {
+    "auto-save": true,
+    "plugins": true,
+    "ignore": [],
+    "css": {
+      "minified": true,
+      "modules": false,
+      "browsers": [
+        "last 2 versions",
+        "ie 8",
+        "ie 9",
+        "ie 10"
+      ],
+      "location": "uikit/css/",
+      "name": "uikit.min.css"
+    },
+    "sass": {
+      "modules": false,
+      "location": "uikit/sass/",
+      "name": "uikit.scss"
+    }
   }
 }

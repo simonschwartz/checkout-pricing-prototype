@@ -1,8 +1,30 @@
 <template>
 	<div id="app">
-		<h1>Checkout pricing prototype</h1>
-		<ProductList></ProductList>
-		<CartList></CartList>
+
+		<header class="uikit-header" role="banner">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<h1>Checkout pricing prototype</h1>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main class="container">
+			<div class="row">
+
+				<div class="col-sm-8">
+					<ProductList></ProductList>
+				</div>
+
+				<div class="col-sm-4">
+					<CartList></CartList>
+				</div>
+
+			</div>
+		</main>
+
 	</div>
 </template>
 
@@ -20,6 +42,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+	.uikit-header {
+		padding: 0.8em 0;
+	}
 
 </style>

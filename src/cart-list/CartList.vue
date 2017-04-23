@@ -7,14 +7,16 @@
 
 		<ul class="cart-list">
 			<li v-for="item, key in cart_items">
-				<CartItem :item="item" v-on:remove="removeFromCart"></CartItem>
-				<button v-on:click="removeFromCart(key, item.item_price)">Remove from cart</button>
+				<article class="item">
+					<CartItem :item="item" v-on:remove="removeFromCart"></CartItem>
+					<button v-on:click="removeFromCart(key, item.item_price)" class="uikit-btn uikit-btn--tertiary">Remove</button>
+				</article>
 			</li>
 		</ul>
 
 		<div v-if="cart_items.length > 0">
 			<h4>Total price: ${{total_price}}</h4>
-			<button>Proceed to checkout</button>
+			<button v-on:click="postData" class="uikit-btn uikit-btn--block">Proceed to checkout</button>
 		</div>
 
 	</div>
@@ -52,6 +54,11 @@ export default {
 			//adjust the total_price accordingly
 			this.total_price = this.total_price - price
 
+		},
+
+		// when the user clicks the 'Proceed to checkout button we 'post' the data
+		postData: function() {
+			window.alert( `Users purchase: ${JSON.stringify( this.cart_items)} ` )
 		}
 	},
 	// when item is added to cart, we add the item data to our cart_items array
@@ -72,7 +79,12 @@ export default {
 
 <style scoped>
 
-	.product-list {
+	.product-cart-container {
+		background-color: #f4f4f4;
+		padding: 0 1em 1em 1em;
+	}
+
+	.cart-list {
 		list-style-type: none;
 		padding-left: 0;
 	}

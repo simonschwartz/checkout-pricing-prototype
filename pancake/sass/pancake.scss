@@ -1,0 +1,8 @@
+/*! PANCAKE v1.0.15 PANCAKE-SASS v1.0.10 */
+
+@import "/Users/dtomac2/checkout-pricing-prototype/node_modules/sass-versioning/dist/_index.scss";
+
+@import "/Users/dtomac2/checkout-pricing-prototype/node_modules/@gov.au/core/lib/sass/_module.scss";
+@import "/Users/dtomac2/checkout-pricing-prototype/node_modules/@gov.au/body/lib/sass/_module.scss";
+
+@include versioning-check();

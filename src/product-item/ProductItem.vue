@@ -1,22 +1,24 @@
 <template>
-	<article class="product-item" v-bind:class="{ special: item.special_qty }">
+	<article class="item" v-bind:class="{ special: item.special_qty }">
 
-		<h3>Item {{ item.name }}</h3>
 
-		<div v-if="item.special_qty > 0">
+
+		<div class="item__details" v-if="item.special_qty > 0">
+			<h3 class="item__name">Item {{ item.name }}</h3>
 			<span class="item__price">
 				${{ item.special_price }}
 			</span>
 			<span class="special-quantity__message">
-				This item has a special quantity of {{ item.special_qty }}
+				Only {{ item.special_qty }} special quantity left!
 			</span>
 		</div>
 
-		<div v-else>
+		<div class="item__details" v-else>
+			<h3 class="item__name">Item {{ item.name }}</h3>
 			${{ item.unit_price }}
 		</div>
 
-		<button v-on:click="addToCart">Add to cart</button>
+		<button v-on:click="addToCart" class="uikit-btn uikit-btn--tertiary">Add to cart</button>
 
 	</article>
 </template>
@@ -64,10 +66,35 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
+
+	.item__name {
+		margin: 0;
+	}
 
 	.special-quantity__message {
 		display: block;
+		text-transform: uppercase;
+		font-size: 0.8em;
+		color: #1B7991;
+		font-weight: 700;
+	}
+
+	.uikit-btn--tertiary {
+		float: right;
+		/*padding: 0.55em 0.5em;
+		height: auto;*/
+	}
+
+	.item__details {
+		float: left;
+	}
+	
+	.item {
+		overflow: hidden;
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 1.5em;
+		margin-bottom: 1.5em;
 	}
 
 </style>
