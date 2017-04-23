@@ -16,11 +16,11 @@
 			${{ item.unit_price }}
 		</div>
 
-		<input v-model.number="item_quantity" type="number">
 		<button v-on:click="addToCart">Add to cart</button>
 
 	</article>
 </template>
+
 
 <script>
 import { bus } from '../main.js';
@@ -30,32 +30,39 @@ export default {
 	props: [ 'item' ],
 	data () {
 		return {
-			// we set a default value for our item quality input field
+			// we set a default value for our item quantity
 			item_quantity: 1,
+			item_price: 0
 		}
 	},
 	methods: {
 		// when the user hits the 'Add to cart' button'
 		addToCart: function() {
 
-			// we save the cart addition info and emit the data to the shopping cart component
+			// we save the item data to send to our CartList component
 			let cart_addition = {
 				item_name: this.$props.item.name,
 				item_price: this.$props.item.unit_price * this.item_quantity,
 				item_quantity: this.item_quantity,
+				special_item: false,
 			}
-
-			bus.$emit('child-msg', cart_addition)
 
 			// if item has special_qty value, then we reduce special_qty value
+			// and we make sure to update the item_price in our data to be the special_price
 			if( this.item.special_qty ) {
 				this.item.special_qty = this.item.special_qty - this.item_quantity
+				cart_addition.item_price = this.$props.item.special_price
+				cart_addition.special_item = true
 			}
+
+			// we then send our data to our CartList component via our event bus
+			bus.$emit('add-item-to-cart', cart_addition)
 
 		}
 	}
 }
 </script>
+
 
 <style scoped>
 
